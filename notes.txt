@@ -1,0 +1,15 @@
+installation
+https://www.digitalocean.com/community/tutorials/how-to-install-and-manage-rabbitmq
+
+auth configuration
+https://www.rabbitmq.com/configure.html
+http://stackoverflow.com/questions/22850546/cant-access-rabbitmq-web-management-interface-after-fresh-install
+
+amqp broker url
+amqp://34.205.23.154
+
+tutorials
+https://www.rabbitmq.com/tutorials/tutorial-one-javascript.html
+
+amqplib channel API
+http://www.squaremobius.net/amqp.node/channel_api.html

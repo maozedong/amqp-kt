@@ -1,14 +1,15 @@
-require('dotenv-safe')
+require('dotenv-safe').config()
 const amqp = require('amqplib')
 
+const url = process.env.AMQP_URL
 const ex = 'general'
-const queue = 'ostap'
+const queue = 'ostap.' + process.pid
 let conn, ch
 
-amqp.connect(process.env.AMQP_URL)
+amqp.connect(url)
   .then(_conn => {
     conn = _conn
-    console.log('connection established!')
+    console.log(`connection to ${url} established!`)
     return conn.createChannel()
   })
   .then(_ch => {
@@ -20,15 +21,16 @@ amqp.connect(process.env.AMQP_URL)
     console.log(`exchange ${ex} asserted!`)
     return ch.assertQueue(queue, {exclusive: true})
   })
-  .then((q) => {
+  .then(() => {
     console.log(`queue ${queue} created!`)
     return ch.bindQueue(queue, ex, '')
   })
   .then(() => {
+    console.log(`queue ${queue} binded to '${ex}'!`)
     ch.consume(queue, (msg) => {
       const content = JSON.parse(msg.content.toString())
       console.log(`[${content.date}] [${content.from}] ${content.text}`)
-    })
+    }, {noAck: true})
   })
   .catch((error) => {
     console.error(error)

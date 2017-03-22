@@ -1,13 +1,17 @@
-require('dotenv-safe')
+require('dotenv-safe').config()
 const amqp = require('amqplib')
 
+const url = process.env.AMQP_URL
 const ex = 'general'
+const from = 'annoying-bot'
+const text = 'Live fast die young'
+
 let conn, ch
 
-amqp.connect(process.env.AMQP_URL)
+amqp.connect(url)
   .then(_conn => {
     conn = _conn
-    console.log('connection established!')
+    console.log(`connection to '${url}' established!`)
     return conn.createChannel()
   })
   .then(_ch => {
@@ -16,18 +20,18 @@ amqp.connect(process.env.AMQP_URL)
     return ch.assertExchange(ex, 'fanout')
   })
   .then(() => {
-    console.log('exchange asserted!')
-    const msg = {
-      from: 'spam-bot',
-      text: 'Live hard die young'
-    }
+    console.log(`exchange '${ex}' asserted!`)
 
     setInterval(() => {
-      msg.date = new Date()
+      const msg = {
+        from,
+        text,
+        date: new Date()
+      }
       const content = new Buffer(JSON.stringify(msg))
-      console.log('publishing message')
+      console.log('publishing annoying message')
       ch.publish(ex, '', content)
-    }, 3000)
+    }, 5000)
   })
   .catch((error) => {
     console.error(error)
