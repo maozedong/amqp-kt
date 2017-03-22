@@ -1,10 +1,4 @@
 # amqp-kt
-### installation
-https://www.digitalocean.com/community/tutorials/how-to-install-and-manage-rabbitmq
-
-### auth configuration
-https://www.rabbitmq.com/configure.html
-http://stackoverflow.com/questions/22850546/cant-access-rabbitmq-web-management-interface-after-fresh-install
 
 ### tutorials
 https://www.rabbitmq.com/tutorials/tutorial-one-javascript.html
