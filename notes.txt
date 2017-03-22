@@ -13,3 +13,15 @@ https://www.rabbitmq.com/tutorials/tutorial-one-javascript.html
 
 amqplib channel API
 http://www.squaremobius.net/amqp.node/channel_api.html
+
+
+plan
+- theory. Broker, consumer, exchange, exchange types, queue, queue types, RPC pattern overview ~ 20 min
+- bot.js file overview ~ 10 min
+- client.js file creating together(consumer) ~ 10 min
+- client.js file expanding independently(publisher), QA session ~ 20 min
+
+// TODO
+- write down theory details
+- video recording
+- check hardware and hangouts session
