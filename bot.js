@@ -3,7 +3,7 @@ const amqp = require('amqplib')
 
 const url = process.env.AMQP_URL
 const ex = 'general'
-const from = 'annoying-bot'
+const from = 'annoying bot'
 const text = 'Live fast die young'
 
 let conn, ch
