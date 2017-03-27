@@ -23,14 +23,8 @@ vorpal
 
 // TODO: implement msg publishing
 function sendMessage (text, callback) {
-  // this.log(text)
-  // this.log('Damn, no one sees it!')
-  const msg = {
-    text,
-    from: 'ostap',
-    date: new Date()
-  }
-  ch.publish(ex, '', new Buffer(JSON.stringify(msg)))
+  this.log(text)
+  this.log('Damn, no one sees it!')
   callback()
 }
 
