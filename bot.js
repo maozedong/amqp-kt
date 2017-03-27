@@ -3,8 +3,6 @@ const amqp = require('amqplib')
 
 const url = process.env.AMQP_URL
 const ex = 'general'
-const from = 'annoying bot'
-const text = 'Live fast die young'
 
 let conn, ch
 
@@ -22,11 +20,13 @@ amqp.connect(url)
   .then(() => {
     console.log(`exchange '${ex}' asserted!`)
 
+    const from = 'annoying bot'
+    const text = 'Live fast die young'
     setInterval(() => {
       const msg = {
+        date: new Date(),
         from,
-        text,
-        date: new Date()
+        text
       }
       const content = new Buffer(JSON.stringify(msg))
       console.log('publishing annoying message')
